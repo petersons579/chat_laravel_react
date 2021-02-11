@@ -1,17 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import { echoNotification } from './Brodscat';
+import { echo } from './Brodscat';
+import api from './api';
+
+import NavBar from './Header';
+import Card from './Card';
 
 function App() {
+  const [data, setData] = useState([]);
+
+  const echoNotification = () => {
+    echo
+    .channel('chats.1')
+    .listen('ChatMessageCreated', ev => {
+      setData(currentArray => [ ...currentArray, ev.message ]);
+    });
+  };
+
+  const fetchMessages = async () => {
+    const response = await api.get('messages');
+    setData(response.data);
+  };
 
   useEffect(() => {
     echoNotification();
+    fetchMessages();
   }, []);
 
   return (
-    <div className="App">
-      <h1>Teste</h1>
-    </div>
+    <Fragment>
+      <NavBar />
+      <div className="container" >
+        <Card data={data} />
+      </div>
+    </Fragment>
   );
 }
 
