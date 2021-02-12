@@ -124,7 +124,7 @@ stdout_logfile=diretorio onde os logs vão ficar armazenado
 stopwaitsecs=3600
 ```
 
-Depois de adicionar os arquivos de consfiguração e necessário rodar os seguintes comandos para que o supervisor leia esses arquivos:
+Depois de adicionar os arquivos de configuração e necessário rodar os seguintes comandos para que o supervisor leia esses arquivos:
 ```sh
 $ supervisorcl reread
 $ supervisorctl update
