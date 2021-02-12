@@ -6,13 +6,9 @@ import api from './api';
 
 import NavBar from './Header';
 import Card from './Card';
-import FooterContainer from './ContainerFooter';
-import { container } from './styles';
 
 function ChatComponent() {
   const [data, setData] = useState([]);
-  const [message, setMessage] = useState();
-  const [user, setUser] = useState(1);
 
   const echoNotification = () => {
     echo
@@ -27,24 +23,16 @@ function ChatComponent() {
     setData(response.data);
   };
 
-  const saveMessage = async () => {
-      await api.post('messages', { user, message });
-      setMessage();
-  };
-
   useEffect(() => {
     echoNotification();
     fetchMessages();
   }, []);
 
-  const onChangeMessage = evt => setMessage(evt.target.value);
-
   return (
     <Fragment>
       <NavBar />
-      <div className="container" style={container} >
+      <div className="container" >
         <Card data={data} />
-        <FooterContainer message={message} onChangeMessage={onChangeMessage} save={saveMessage} />
       </div>
     </Fragment>
   );
