@@ -22,7 +22,7 @@ Para rodar o projeto precisaremos dos seguintes artificios:
 Instale antes e execute o Redis na sua maquina e siga a [documentação](https://laravel.com/docs/8.x/broadcasting#introduction) para configrar o Redis como driver de fila no laravel, segue abaixo um pequeno resumo:
  - Antes de tudo utilize o **composer install** na pasta backend/ para adicionar todos os pacotes necessários
  - Defina "redis" na chave BROADCAST_DRIVER e QUEUE_CONNECTION do arquivo .env
- - Adicione o host, porta e senha do redis no .env, caso necessário as configurações **databaseConfig** no arquivo laravel-echo-server.lock
+ - Adicione o host, porta e senha do redis no .env, caso necessário as configurações **databaseConfig** no arquivo backend/laravel-echo-server.lock
 
 Instalando o **laravel-echo-server**
 
@@ -33,6 +33,12 @@ $ cd backend
 $ npm install -g laravel-echo-server
 ```
 
+Adicione os pacotes do laravel echo e do socket io no React
+```sh
+$ cd frontend
+$ npm i laravel-echo socket.io-client
+```
+
 **Nota**
 
 A configuração devModeconfiguração esta setada como true.
@@ -41,7 +47,7 @@ A configuração devModeconfiguração esta setada como true.
 
 Depois de executar as configurações básicas, rode os seguintes comandos:
 
-Executeas migrations:
+Execute as migrations:
 ```sh
 $ cd backend
 $ php artisan migration
